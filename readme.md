@@ -3,4 +3,7 @@
 ![Alt text](imgs/app.png)
 
 In order to run this app you would need to clone the repo
-`code` git clone xyz
+```bash
+git clone https://github.com/singh97kishan/Apple-SCM-LLM.git
+```
+

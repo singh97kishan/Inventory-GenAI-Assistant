@@ -1,0 +1,51 @@
+product_id,product_category,product_name,price,stock_quantity
+101,iPhone,iPhone 13,999,50
+102,MacBook,MacBook Air,1299,30
+103,iPad,iPad Pro,799,40
+104,Apple Watch,Apple Watch Series 7,399,60
+105,AirPods,AirPods Pro,249,70
+106,Mac,Mac mini,699,25
+107,iPhone,iPhone 12,899,45
+108,iPad,iPad Air,599,35
+109,MacBook,MacBook Pro,1799,20
+110,Apple Watch,Apple Watch SE,279,55
+111,AirPods,AirPods Max,549,15
+112,iPhone,iPhone SE,399,40
+113,Mac,MacBook Pro 16-inch,2399,10
+114,iPad,iPad mini,499,30
+115,Apple Watch,Apple Watch Series 6,699,50
+116,AirPods,AirPods 3rd Gen,179,80
+117,MacBook,MacBook Pro 13-inch,1499,25
+118,iPhone,iPhone 11,699,55
+119,iPad,iPad 9th Gen,329,65
+120,Apple Watch,Apple Watch Series 5,499,40
+121,AirPods,AirPods 2nd Gen,159,75
+122,Mac,iMac 27-inch,1799,15
+123,iPhone,iPhone XR,599,50
+124,iPad,iPad Pro 11-inch,899,30
+125,Apple Watch,Apple Watch Series 4,399,60
+126,AirPods,AirPods 1st Gen,129,90
+127,MacBook,MacBook Air M1,999,40
+128,iPhone,iPhone 12 Pro,1099,35
+129,iPad,iPad 8th Gen,429,50
+130,Apple Watch,Apple Watch Series 3,199,80
+131,AirPods,AirPods Pro Max,699,20
+132,Mac,iMac 24-inch,1499,25
+133,iPhone,iPhone 13 Pro,1199,30
+134,iPad,iPad Pro 12.9-inch,1099,25
+135,Apple Watch,Apple Watch Series 2,299,45
+136,AirPods,AirPods Studio,799,15
+137,MacBook,MacBook Air M2,1299,20
+138,iPhone,iPhone 12 Mini,699,40
+139,iPad,iPad Air 4th Gen,499,30
+140,Apple Watch,Apple Watch Edition,1299,10
+141,AirPods,AirPods Pro Lite,179,70
+142,Mac,Mac Pro,5999,5
+143,iPhone,iPhone X,799,35
+144,iPad,iPad Pro 10.5-inch,799,40
+145,Apple Watch,Apple Watch Nike+,349,50
+146,AirPods,AirPods X,249,60
+147,MacBook,MacBook 12-inch,1299,15
+148,iPhone,iPhone 8,599,40
+149,iPad,iPad Mini 5th Gen,399,55
+150,Apple Watch,Apple Watch Hermes,1599,10

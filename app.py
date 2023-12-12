@@ -19,6 +19,6 @@ if question:
 
 st.markdown(
     """
-    *For more information, visit this [Github Repo](https://www.apple.com/).*
+    *For more information, visit this [Github Repo](https://github.com/singh97kishan/Apple-SCM-LLM).*
     """
 )

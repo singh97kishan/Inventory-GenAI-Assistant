@@ -1,6 +1,6 @@
 # Apple - Inventory Management System
 
-![Alt text](imgs/app.png)
+![Alt text](imgs/app_overview.png)
 
 This Inventory management system is developed to query a database via some naive human texts with the intention that a person without any Query language knowledge can also fetch the needed queries
 
@@ -21,7 +21,7 @@ Run the `load_data_to_sql.ipynb` to push the csv data (apple_data.csv and discou
 
 Install all the needed dependencies
 ```bash
-pip install -r requirements.txt
+pip install -r requirements.text
 ```
 Run the streamlit app
 ```bash
@@ -32,6 +32,7 @@ streamlit run app.py
 1. what is the discounted price of mac pro
 2. How many iphones are left in stock?
 3. I want to know the price of iphone 13
-4. Can you tell me the discounted price of the above product? (Follow up question)
+4. What is the discounted price of the above product? (Follow up question)
+5. What will be the revenue generated from selling all the Mac available in our stock after applying discounts?
 5. What is the temperature today?
 

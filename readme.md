@@ -21,7 +21,7 @@ Run the `load_data_to_sql.ipynb` to push the csv data (apple_data.csv and discou
 
 Install all the needed dependencies
 ```bash
-pip install -r requirements.text
+pip install -r requirements.txt
 ```
 Run the streamlit app
 ```bash

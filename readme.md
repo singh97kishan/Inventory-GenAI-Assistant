@@ -28,3 +28,10 @@ Run the streamlit app
 streamlit run app.py
 ```
 
+## Sample Questions
+1. what is the discounted price of mac pro
+2. How many iphones are left in stock?
+3. I want to know the price of iphone 13
+4. Can you tell me the discounted price of the above product? (Follow up question)
+5. What is the temperature today?
+

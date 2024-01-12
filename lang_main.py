@@ -66,8 +66,6 @@ def generate_llm_response(prompt, history_df):
     exampleSelector = SemanticSimilarityExampleSelector(vectorstore = vectorstore, k=1)
     response, chat_history = "", dict()
     chat_history = get_chat_history(history_df)
-
-    #prompt = "How many mac pro are left in stock?"
     msg = [
         SystemMessage(content = mysql_prompt),
         HumanMessage(content = exampleSelector.select_examples({"Question": prompt})[0]['Question']),

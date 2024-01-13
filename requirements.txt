@@ -9,3 +9,5 @@ mysql-connector-python
 pymysql
 sentence-transformers
 chromadb
+pandas
+sqlalchemy

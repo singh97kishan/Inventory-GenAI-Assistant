@@ -41,5 +41,4 @@ streamlit run app.py
 4. What is the discounted price of the above product? (Follow up question)
 5. What will be the revenue generated from selling all the Mac available in our stock after applying discounts?
 5. What is the temperature today?
-6. Temp change
 

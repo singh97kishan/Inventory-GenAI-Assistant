@@ -69,7 +69,7 @@ def generate_llm_response(prompt, history_df):
     msg = [
         SystemMessage(content = mysql_prompt),
         HumanMessage(content = exampleSelector.select_examples({"Question": prompt})[0]['Question']),
-        AIMessage(content = exampleSelector.select_examples({"Question": prompt})[0]['SQLQuery'])
+        AIMessage(content = exampleSelector.select_examples({"SQLQuery": prompt})[0]['SQLQuery'])
         ]
 
     msg.append(SystemMessage(content = chat_history))

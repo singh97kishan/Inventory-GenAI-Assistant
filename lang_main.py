@@ -2,7 +2,8 @@ import re
 import os
 import joblib
 import pandas as pd
-from langchain.llms import GooglePalm
+import google.generativeai as genai
+from langchain_google_genai import GoogleGenerativeAIEmbeddings, ChatGoogleGenerativeAI
 from langchain.vectorstores import FAISS
 from langchain.prompts import SemanticSimilarityExampleSelector
 from langchain.schema import SystemMessage, HumanMessage, AIMessage
@@ -48,11 +49,10 @@ def get_sql_result(sql_query):
     return df_result
 
 def clean_response_query(response):
-    pattern = re.compile(r'SQLQuery: (.+?)(?:;|$)', re.DOTALL)
-    matches = pattern.findall(response)
-    response_query = matches[1] if len(matches)>1 else matches[0]
-    response_query_clean = response_query.replace('\\n',' ')
-    return response_query_clean
+    import re
+    text = response.replace('`','').replace('sql', '').replace('\\n','').replace('SQLQuery:', '')
+    text = re.sub(r'\s+', ' ', text)
+    return text
 
 def refresh_chat_history(history_df):
     if len(history_df)>5:
@@ -60,10 +60,11 @@ def refresh_chat_history(history_df):
     return history_df
 
 def generate_llm_response(prompt, history_df):
-    llm = GooglePalm(google_api_key= os.environ['GOOGLE_API_KEY'], temperature=0.1)
+
+    llm = ChatGoogleGenerativeAI(model = "gemini-pro", temperature=0.3)
 
     vectorstore = load_embeddings()
-    exampleSelector = SemanticSimilarityExampleSelector(vectorstore = vectorstore, k=1)
+    exampleSelector = SemanticSimilarityExampleSelector(vectorstore = vectorstore, k=2)
     response, chat_history = "", dict()
     chat_history = get_chat_history(history_df)
     msg = [
@@ -75,7 +76,7 @@ def generate_llm_response(prompt, history_df):
     msg.append(SystemMessage(content = chat_history))
     msg.append(HumanMessage(content= prompt))
 
-    response = llm(str(msg))
+    response = llm.invoke(str(msg)).content
 
     clean_query = clean_response_query(response)
 
@@ -86,4 +87,4 @@ def generate_llm_response(prompt, history_df):
 
     history_df = refresh_chat_history(history_df)
 
-    return res_data, history_df
+    return response.replace('`','').replace('sql',''), res_data, history_df

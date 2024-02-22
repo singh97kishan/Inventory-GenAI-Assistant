@@ -8,7 +8,7 @@ COLUMN DESCRIPTION:
 - price: This is the price per unit for the given product_id.
 - stock_quantity : Total units left in stock or units available for the a given product_id.
 
-TABLE NAME : dicounts
+TABLE NAME : discounts
 TABLE DESCRIPTION: This is the discount table which has all the discounts related information at product_id level.
 COLUMN DESCRIPTION:
 - product_id : Unique product ID to identify the product.
@@ -101,9 +101,10 @@ INSTRUCTIONS: Don't use tab or extra spaces while generating queries.
 
 Use the following format:
 
-Question: Question here
-SQLQuery: SQL Query to return
+Question: User Question
+SQLQuery: SQL query to return
 
 ADDITIONAL INFORMATION:
 1. If any Product name or category is not mentioned in the prompt, consider the previous product info from chat history.
+2. If the prompt seems to have irrelevant context or some personal question which do not any relation with our table schema, respond "Cannot process the request, please ask relevant question" 
 """

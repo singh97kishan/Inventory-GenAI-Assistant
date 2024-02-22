@@ -1,16 +1,26 @@
-# Apple - Inventory Management System
+# Inventory GenAI Assistant- Text2SQL
 
-![Alt text](imgs/app_overview.png)
+![Alt text](imgs/app_new.png)
 
 This Inventory management assistant helps to query a database via some naive human texts with the intention that a person without having any Query language knowledge can also fetch the needed queries
 
-For this, we have used Langchain which is using GooglePALM Large language model api to fetch the database through custom textual queries.
+For this, we have used Langchain which is using Google Gemini Pro Large language model api to fetch the database through custom textual queries.
 
 To imporve the performance of LLM model on our data, we have further used Few shot prompting technique, where we give some example along with our query prompt for the LLM to get more context out of the data and query using the most similar example.
 
 Data dictionary is also passed in the prompt along with some of the instructions which could help optimizing the performance of LLM on our dataset.
 
 Conversation history is also being tracked and sent along with prompt & user question to get follow-up questioning capability.
+
+## Tech stack
+
+* 🐍Python
+* 🛑🔥Streamlit
+* 🦜️🔗Langchain
+* 🔰FAISS Vectorstore
+* ❇️Google Generative AI
+* 🆚Git & Github
+* 👽 SQL Server Management Studio
 
 ## Run the application
 

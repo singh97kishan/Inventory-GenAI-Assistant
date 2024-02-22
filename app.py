@@ -4,16 +4,46 @@ import pandas as pd
 from sqlalchemy import create_engine
 from utilities import generic_prompts
 
+st.set_page_config(page_title = 'Apple GenAI Assist.')
+
+st.title("Inventory GenAI Assistant :robot_face:")
+
 history_df = pd.DataFrame(columns = ["HumanMessage", "AIMessage"])
 
+chat_tokeep= []
+
 def clear_chat_history():
+    """
+    To append the chat messages in streamlit session state to a variable and clear the chat window
+    """
+    for message in st.session_state.messages:
+        chat = dict()
+        chat[message['role']] = message['content']
+        chat_tokeep.append(chat)
+        #st.write(chat)
     st.session_state.messages = [{"role": "assistant", "content": "How may I assist you today?"}]
     global history_df
     history_df = pd.DataFrame(columns = ["HumanMessage", "AIMessage"])
 
-st.set_page_config(page_title = 'Apple GenAI Assist.')
 
-st.title("Inventory GenAI Assistant :robot_face:")
+
+with st.sidebar:
+    expander = st.expander("Chat History")
+    expander_content = expander.empty()
+    expander_content.write("No Chat history found")
+
+    st.markdown(
+    """
+    *For more information, visit this [Github Repo](https://github.com/singh97kishan/Apple-SCM-LLM).*
+    """
+    )
+
+    if st.button('Clear Chat Window'):
+       clear_chat_history()
+       expander.write(chat_tokeep)
+       
+
+# ----------------------------------------------------------------------------------------------------------#
 
 if "messages" not in st.session_state.keys():
     st.session_state.messages = [{"role": "assistant", "content": "How may I assist you today?"}]
@@ -21,21 +51,26 @@ if "messages" not in st.session_state.keys():
 for message in st.session_state.messages:
     with st.chat_message(message["role"]):
         if isinstance(message["content"], pd.DataFrame):
+            with st.expander("Generated SQL Query"):
+                st.code(message["sqlquery"], language='sql')
             st.dataframe(message["content"])
         else:
             st.write(message["content"])
 
 def get_response(prompt, history_df):
-    if prompt in generic_prompts:
-        #full_response = "Hi, how can I help you today?"
-        full_response = "Han bhai.. kese yad kia?"
-    else:
-        try:
-            full_response, history_df = generate_llm_response(prompt, history_df)
-        except:
-            #full_response = "I couldn't complete your request, please ask relevant question."
-            full_response = "Mereko nhi malum re baba, kuch aur puch."
-    return full_response, history_df
+    """
+    Function to get the LLM response from generate_llm_reponse function from lang_main.py file
+    """
+    try:
+        if prompt in generic_prompts:
+            full_response = "Hi, how can I help you today?"
+            clean_query = ""
+        else:
+            clean_query, full_response, history_df = generate_llm_response(prompt, history_df)
+    except:
+        clean_query = ""
+        full_response = "Couldn't process the request, please ask relevant questions only"
+    return clean_query, full_response, history_df
 
 
 
@@ -46,23 +81,17 @@ if prompt := st.chat_input("Ask your questions here"):
 
 if st.session_state.messages[-1]["role"] != "assistant":
     with st.chat_message("assistant"):
-        with st.spinner("Ruk thoda, dhund ke ata hu.."):
-        #with st.spinner("Allow me a moment..."):
-            full_response, history_df = get_response(prompt, history_df)
-            # placeholder = st.empty()
+        with st.spinner("Please allow me a moment to check.."):
+            sqlquery, full_response, history_df = get_response(prompt, history_df)
             if isinstance(full_response, pd.DataFrame):
                 final_response = pd.DataFrame(full_response)
+                with st.expander("Generated SQL Query"):
+                    st.code(sqlquery, language='sql')
                 st.dataframe(final_response)
             else:
                 final_response = full_response
                 st.markdown(final_response)
 
-    message = {"role": "assistant", "content": final_response}
+    message = {"role": "assistant", "content": final_response, "sqlquery": sqlquery}
     st.session_state.messages.append(message)
 
-st.button('Clear Chat History', on_click=clear_chat_history)
-st.markdown(
-    """
-    *For more information, visit this [Github Repo](https://github.com/singh97kishan/Apple-SCM-LLM).*
-    """
-)

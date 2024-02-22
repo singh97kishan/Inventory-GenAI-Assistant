@@ -31,7 +31,6 @@ with st.sidebar:
     expander = st.expander("Chat History")
     expander_content = expander.empty()
     expander_content.write("No Chat history found")
-
     st.markdown(
     """
     *For more information, visit this [Github Repo](https://github.com/singh97kishan/Apple-SCM-LLM).*

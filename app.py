@@ -46,7 +46,6 @@ with st.sidebar:
        clear_chat_history()
        expander.write(chat_tokeep)
        
-
 # ----------------------------------------------------------------------------------------------------------#
 
 if "messages" not in st.session_state.keys():

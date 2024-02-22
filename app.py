@@ -25,7 +25,10 @@ def clear_chat_history():
     global history_df
     history_df = pd.DataFrame(columns = ["HumanMessage", "AIMessage"])
 
-
+schema = """TABLE NAME: apple_data \n product_id - int\n product_category - nvarchar \n product_name - nvarchar \n price - double \n stock_quantity - int\n
+            TABLE_NAME: discounts \n product_id - int \n discount_perc - double
+            """
+schema_lis = schema.split("\n")
 
 with st.sidebar:
     expander = st.expander("Chat History")
@@ -36,7 +39,9 @@ with st.sidebar:
     *For more information, visit this [Github Repo](https://github.com/singh97kishan/Apple-SCM-LLM).*
     """
     )
-
+    schema_expander = st.expander("Schema")
+    for i in schema_lis:
+        schema_expander.write(i)
     if st.button('Clear Chat Window'):
        clear_chat_history()
        expander.write(chat_tokeep)

@@ -25,10 +25,10 @@ def clear_chat_history():
     global history_df
     history_df = pd.DataFrame(columns = ["HumanMessage", "AIMessage"])
 
-schema = """TABLE NAME: apple_data \n product_id - int\n product_category - nvarchar \n product_name - nvarchar \n price - double \n stock_quantity - int\n
-            TABLE_NAME: discounts \n product_id - int \n discount_perc - double
-            """
-schema_lis = schema.split("\n")
+# schema = """TABLE NAME: apple_data \n product_id - int\n product_category - nvarchar \n product_name - nvarchar \n price - double \n stock_quantity - int\n
+#             TABLE_NAME: discounts \n product_id - int \n discount_perc - double
+#             """
+# schema_lis = schema.split("\n")
 
 with st.sidebar:
     expander = st.expander("Chat History")
@@ -40,8 +40,10 @@ with st.sidebar:
     """
     )
     schema_expander = st.expander("Schema")
-    for i in schema_lis:
-        schema_expander.write(i)
+    with st.expander("Schema"):
+        st.image("imgs\er2.png", caption='ER', use_column_width=True)
+    # for i in schema_lis:
+    #     schema_expander.write(i)
     if st.button('Clear Chat Window'):
        clear_chat_history()
        expander.write(chat_tokeep)
@@ -70,8 +72,9 @@ def get_response(prompt, history_df):
             clean_query = ""
         else:
             clean_query, full_response, history_df = generate_llm_response(prompt, history_df)
-    except:
+    except Exception as e:
         clean_query = ""
+        #full_response= str(e)
         full_response = "Couldn't process the request, please ask relevant questions only"
     return clean_query, full_response, history_df
 

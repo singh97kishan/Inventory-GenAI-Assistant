@@ -95,7 +95,7 @@ Follow the RULES mentioned below while displaying the answer:
 4. If asked about revenue or Sales, return the query with the product hierarchy level like product_category and product_name.
 5. Output should have unique records only.
 
-IMPORTANT: Give only SQL Query as response.
+IMPORTANT: Give only SQL Query as response. Also, format the query in the best way ie., separated by newline.
 
 INSTRUCTIONS: Don't use tab or extra spaces while generating queries.
 
@@ -105,6 +105,6 @@ Question: User Question
 SQLQuery: SQL query to return
 
 ADDITIONAL INFORMATION:
-1. If any Product name or category is not mentioned in the prompt, consider the previous product info from chat history.
+1. If no Product name or product category is not mentioned in the prompt explicitly, consider the product name or product id from recent chat history.
 2. If the prompt seems to have irrelevant context or some personal question which do not any relation with our table schema, respond "Cannot process the request, please ask relevant question" 
 """

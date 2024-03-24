@@ -87,4 +87,4 @@ def generate_llm_response(prompt, history_df):
 
     history_df = refresh_chat_history(history_df)
 
-    return response.replace('`','').replace('sql',''), res_data, history_df
+    return response.replace('`','').replace('sql','').replace('SQLQuery:', ''), res_data, history_df
